@@ -2,7 +2,8 @@ const prompt = require("prompt-sync")();
 const validation = require("./validation.js");
 
 let contact;
-let addContact = () => {
+let addressBookArray = [];
+const addContact = () => {
   let firstName = prompt("Enter the first name: ");
   let lastName = prompt("Enter the last name: ");
   let address = prompt("Enter the Address: ");
@@ -24,18 +25,37 @@ let addContact = () => {
     console.error(error);
     addContact();
   }
-
   contact = {
-      firstName: firstName,
-      lastName: lastName,
-      address: address,
-      city: city,
-      state: state,
-      zip: zip,
-      phone: phone,
-      email: email,
-    };
-    console.log("Contacts inserted successfully");
-    console.log(contact);
+    firstName: firstName,
+    lastName: lastName,
+    address: address,
+    city: city,
+    state: state,
+    zip: zip,
+    phone: phone,
+    email: email,
+  };
+  addressBookArray.push(contact);
+  console.log("Contacts inserted successfully");
+  console.log(contact);
 };
-addContact();
+let displayAddressBook = () => {
+  console.log(addressBookArray);
+};
+
+let flag = true;
+while (flag) {
+  console.log("1.Add Contact\n2.Display AddressBook");
+  let choice = prompt("Enter your choice: ");
+  switch (Number(choice)) {
+    case 1:
+      addContact(); 
+      break;
+    case 2:
+      displayAddressBook(); 
+      break;
+    default:
+      flag = false; 
+      break;
+  }
+}
