@@ -5,6 +5,16 @@ let contact;
 let addressBookArray = [];
 const addContact = () => {
   let firstName = prompt("Enter the first name: ");
+  let repeatCheck = addressBookArray.find(function (contact) {
+    if (contact.firstName == firstName) {
+      return true;
+    }
+  });
+  if (repeatCheck) {
+    console.log("Name already exists!!Please choose different name");
+    addContact();
+    return;
+  }
   let lastName = prompt("Enter the last name: ");
   let address = prompt("Enter the Address: ");
   let city = prompt("Enter the city: ");
@@ -13,7 +23,7 @@ const addContact = () => {
   let phone = prompt("Enter the Phone number: ");
   let email = prompt("Enter the email id: ");
 
-  //validation for the user inputs
+
   try {
     validation.firstNameValidation(firstName);
     validation.lastNameValidation(lastName);
@@ -42,12 +52,12 @@ const addContact = () => {
   console.log(contact);
 };
 
-//displays the addressBook Contacts
+
 let displayAddressBook = () => {
   console.log(addressBookArray);
 };
 
-//Edit the Contact details
+
 let editContact = (personName) => {
   let flag = false;
   for (let i = 0; i < addressBookArray.length; i++) {
@@ -155,7 +165,7 @@ let editContact = (personName) => {
     console.log("Name you entered is not present in addressBook");
 };
 
-//delete contact from addressBook
+
 let deleteContact = (personName) => {
   let flag = true;
   for (let i = 0; i < addressBookArray.length; i++) {
@@ -169,25 +179,27 @@ let deleteContact = (personName) => {
   if (flag) console.log("Name you entered is not present in addressBook");
 };
 
-//Number of contacts in the addressBook
+
 let sizeAddressBook = () => {
   console.log(
     "Number of contacts in the addressBook is: " + addressBookArray.length
   );
 };
 
-//main
+
 let flag = true;
 let personName;
 while (flag) {
-  console.log("1.Add Contact\n2.Display AddressBook\n3.Edit Contact\n4.Delete Contact\n5.Count of contacts");
+  console.log(
+    "1.Add Contact\n2.Display AddressBook\n3.Edit Contact\n4.Delete Contact\n5.Count of contacts"
+  );
   let choice = prompt("Enter your choice: ");
   switch (Number(choice)) {
     case 1:
-      addContact(); //calling the addContact function to insert details into contact
+      addContact(); 
       break;
     case 2:
-      displayAddressBook(); // displays the addressBook
+      displayAddressBook(); 
       break;
     case 3:
       personName = prompt(
@@ -204,7 +216,7 @@ while (flag) {
       break;
     default:
       console.log("Wrong choice");
-      flag = false; // break the while loop
+      flag = false; 
       break;
   }
 }
