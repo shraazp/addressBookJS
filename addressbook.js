@@ -185,13 +185,23 @@ let sizeAddressBook = () => {
     "Number of contacts in the addressBook is: " + addressBookArray.length
   );
 };
-
+let searchCityState = (place) => {
+    let filteredArray = addressBookArray;
+    filteredArray.filter(function () {
+      addressBookArray.find(function (contact) {
+        if (contact.city == place || contact.state == place) {
+          return true;
+        }
+      });
+    });
+    console.log("Result:" + JSON.stringify(filteredArray));
+  };
 
 let flag = true;
 let personName;
 while (flag) {
   console.log(
-    "1.Add Contact\n2.Display AddressBook\n3.Edit Contact\n4.Delete Contact\n5.Count of contacts"
+    "1.Add Contact\n2.Display AddressBook\n3.Edit Contact\n4.Delete Contact\n5.Count of contacts\n6.search by city or state"
   );
   let choice = prompt("Enter your choice: ");
   switch (Number(choice)) {
@@ -214,6 +224,10 @@ while (flag) {
     case 5:
       sizeAddressBook();
       break;
+    case 6:
+        let place = prompt("Enter the city name or state :");
+        searchCityState(place);
+        break;
     default:
       console.log("Wrong choice");
       flag = false; 
