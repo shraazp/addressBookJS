@@ -161,7 +161,7 @@ let deleteContact = (personName) => {
   for (let i = 0; i < addressBookArray.length; i++) {
     if (addressBookArray[i].firstName == personName) {
       flag = false;
-      addressBookArray.splice(i,1);
+      addressBookArray.splice(i, 1);
       console.log("Deleted Successfully!!");
       break;
     }
@@ -169,11 +169,18 @@ let deleteContact = (personName) => {
   if (flag) console.log("Name you entered is not present in addressBook");
 };
 
+//Number of contacts in the addressBook
+let sizeAddressBook = () => {
+  console.log(
+    "Number of contacts in the addressBook is: " + addressBookArray.length
+  );
+};
+
 //main
 let flag = true;
 let personName;
 while (flag) {
-  console.log("1.Add Contact\n2.Display AddressBook\n3.Edit Contact");
+  console.log("1.Add Contact\n2.Display AddressBook\n3.Edit Contact\n4.Delete Contact\n5.Count of contacts");
   let choice = prompt("Enter your choice: ");
   switch (Number(choice)) {
     case 1:
@@ -191,6 +198,9 @@ while (flag) {
     case 4:
       personName = prompt("Enter the name whose contact you need to delete :");
       deleteContact(personName);
+      break;
+    case 5:
+      sizeAddressBook();
       break;
     default:
       console.log("Wrong choice");
